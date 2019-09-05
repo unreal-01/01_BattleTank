@@ -15,7 +15,6 @@ void ATankAIController::BeginPlay()
 	}
 	else
 	{
-		UE_LOG(LogTemp, Warning, TEXT("PlayerTank is: %s"), *(PlayerTank->GetName()));
 	}
 }
 

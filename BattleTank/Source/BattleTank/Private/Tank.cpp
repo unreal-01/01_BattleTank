@@ -11,6 +11,9 @@ ATank::ATank()
 
 	// No need to protect points as added at construction
 	TankAimingComponent = CreateDefaultSubobject<UTankAimingComponent>(FName("Aiming Component"));
+
+	
+
 }
 
 // Called when the game starts or when spawned
@@ -24,7 +27,6 @@ void ATank::BeginPlay()
 void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
 }
 
 void ATank::AimAt(FVector HitLocation)
@@ -35,4 +37,28 @@ void ATank::AimAt(FVector HitLocation)
 void ATank::SetBarrelReference(UTankBarrel* BarrelToSet)
 {
 	TankAimingComponent->SetBarrelReference(BarrelToSet);
+	Barrel = BarrelToSet;
+}
+
+void ATank::SetTurrentReference(UTankTurrent* TurrentToSet)
+{
+	TankAimingComponent->SetTurrentReference(TurrentToSet);
+}
+
+void ATank::Fire()
+{
+	bool IsReloaded = (GetWorld()->GetTimeSeconds() - LastFireTime) > ReloadTimeInSeconds;
+
+	if (Barrel && IsReloaded)
+	{ 
+		// Spawn a projectile at the socket location on the barrel
+		auto Prjectile = GetWorld()->SpawnActor<AProjectile>(
+			ProjectileBlueprint,
+			Barrel->GetSocketLocation(FName("Projectile")),
+			Barrel->GetSocketRotation(FName("Projectile"))
+			);
+
+		Prjectile->LaunchProjectile(LaunchSpeed);
+		LastFireTime = GetWorld()->GetTimeSeconds();
+	}
 }

@@ -21,5 +21,5 @@ public:
 
 	// Max force per track in Newtons
 	UPROPERTY(EditDefaultsOnly)
-	float TrackMaxDrivingForce = 200000000; // Aussme 40 tonne tank, and 1g (10m per second) acceleration
+	float TrackMaxDrivingForce = 30000000; // Aussme 40 tonne tank, and 1g (10m per second) acceleration
 };

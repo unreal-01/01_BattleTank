@@ -1,14 +1,15 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// Copyright @Dheyaa Hussein.
 
 #pragma once
 
 #include "CoreMinimal.h"
 #include "Tank.h"
+#include "TankAimingComponent.h"
 #include "GameFramework/PlayerController.h"
 #include "TankPlayerController.generated.h"
 
 /**
- * 
+ * Responsible fro helping the player aim.
  */
 
 UCLASS()
@@ -22,16 +23,19 @@ public:
 
 	virtual void Tick(float DeltaTime) override;
 
+protected:
+	UFUNCTION(BlueprintCallable, Category = "Setup")
+	ATank* GetControlledTank() const;
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "Setup")
+	void FoundAimingComponent(UTankAimingComponent* AimCompRef);
+
 private:
 	UPROPERTY(EditAnywhere)
 	float CrossHairXLocation = 0.5;
 
 	UPROPERTY(EditAnywhere)
 	float CrossHairYLocation = 0.33333;
-
-
-
-	ATank* GetControlledTank() const;
 
 	UPROPERTY(EditAnywhere)
 	float LineTraceRange = 1000000.0;

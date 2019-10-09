@@ -3,8 +3,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Tank.h"
 #include "AIController.h"
+#include "TankAimingComponent.h"
 #include "TankAIController.generated.h"
 
 /**

@@ -52,21 +52,22 @@ public:
 
 	UTankTurrent* Turret = nullptr;
 
-	UPROPERTY(EditAnywhere, Category = "Setup")
-	TSubclassOf<AProjectile> ProjectileBlueprint;
-
-
-	UPROPERTY(EditAnywhere, Category = "Firing")
-	float ReloadTimeInSeconds = 3;
 
 	float LastFireTime = 0;
 
 	FVector AimDirection;
 
-	UFUNCTION(BlueprintCallable, Category = "Firing")
-	int GetRoundsLeft() const;
+	UPROPERTY(EditAnywhere, Category = "Setup")
+	TSubclassOf<AProjectile> ProjectileBlueprint;
 
-	int RoundsLeft = 3;
+	UPROPERTY(EditAnywhere, Category = "Firing")
+	float ReloadTimeInSeconds = 3;
+
+	UFUNCTION(BlueprintCallable, Category = "Firing")
+	int32 GetRoundsLeft() const;
+
+	UPROPERTY(EditAnywhere, Category = "Firing")
+	int32 RoundsLeft = 3;
 
 protected:
 	UPROPERTY(BlueprintReadOnly, Category = "State")

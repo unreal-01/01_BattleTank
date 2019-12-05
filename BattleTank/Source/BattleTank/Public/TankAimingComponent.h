@@ -61,13 +61,13 @@ public:
 	TSubclassOf<AProjectile> ProjectileBlueprint;
 
 	UPROPERTY(EditAnywhere, Category = "Firing")
-	float ReloadTimeInSeconds = 3;
+	float ReloadTimeInSeconds = 0.1;
 
 	UFUNCTION(BlueprintCallable, Category = "Firing")
 	int32 GetRoundsLeft() const;
 
 	UPROPERTY(EditAnywhere, Category = "Firing")
-	int32 RoundsLeft = 3;
+	int32 RoundsLeft = 33;
 
 protected:
 	UPROPERTY(BlueprintReadOnly, Category = "State")
